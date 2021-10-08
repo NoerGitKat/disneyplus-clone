@@ -1,7 +1,7 @@
-import type { NextPage } from "next";
 import { IVideos } from "../interfaces/home";
+import { gqlClient } from "../graphql";
+import { getVideos } from "./home/queries";
 import styles from "../styles/Home.module.scss";
-import { getVideos, gqlClient } from "./home/data";
 
 export const getStaticProps = async () => {
   const { videos } = await gqlClient.request(getVideos);
@@ -9,7 +9,7 @@ export const getStaticProps = async () => {
   return { props: { videos } };
 };
 
-const Home: NextPage = ({ videos }: IVideos) => {
+const Home = ({ videos }: IVideos) => {
   console.log("videos are", videos);
   return <div className={styles.container}>hello</div>;
 };
