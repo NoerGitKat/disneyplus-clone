@@ -7,6 +7,7 @@ import getRandomVideo from "../utils/getRandomVideo";
 import { useEffect, useState } from "react";
 import Section from "../components/Section";
 import filterVideos from "../utils/filterVideos";
+import getUnseenVideos from "../utils/getUnseenVideos";
 
 export const getStaticProps = async () => {
   const { videos } = await gqlClient.request(getVideos);
@@ -38,6 +39,7 @@ const Home = ({ videos }: IVideos) => {
   }, [videos]);
 
   const genres = [
+    "Recommended For You",
     "Family",
     "Cartoon",
     "Drama",
@@ -56,19 +58,30 @@ const Home = ({ videos }: IVideos) => {
         <Image
           src={video.thumbnail.url}
           alt={video.title}
-          width={2400}
-          height={1500}
+          width={240}
+          height={150}
           layout="responsive"
         />
       </div>
       <div className={styles["video-feed"]}>
-        {genres.map((genre: string) => (
-          <Section
-            key={genre}
-            genre={genre}
-            videos={filterVideos(videos, genre)}
-          />
-        ))}
+        {genres.map((genre: string) => {
+          if (genre === "Recommended For You") {
+            return (
+              <Section
+                key={genre}
+                genre={genre}
+                videos={getUnseenVideos(videos)}
+              />
+            );
+          }
+          return (
+            <Section
+              key={genre}
+              genre={genre}
+              videos={filterVideos(videos, genre)}
+            />
+          );
+        })}
       </div>
     </div>
   );

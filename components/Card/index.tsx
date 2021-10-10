@@ -7,7 +7,7 @@ const Card = ({ thumbnail }: ICard) => {
     <div className={styles["card"]}>
       <Image
         src={thumbnail.url}
-        height={300}
+        height={200}
         width={300}
         layout="responsive"
         alt={thumbnail.url}

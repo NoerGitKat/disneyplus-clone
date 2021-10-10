@@ -1,9 +1,11 @@
+@import "./variables/fonts";
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "Avenir Roman", sans-serif;
+  background: rgb(29, 28, 28);
 }
 
 a {
