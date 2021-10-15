@@ -1,6 +1,10 @@
 .home-container {
   color: white;
   .main-video {
+    height: 200px;
+    overflow: hidden;
+    margin: 2rem;
+    border-radius: 10px;
   }
 
   .video-feed {

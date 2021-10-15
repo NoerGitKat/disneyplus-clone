@@ -1,5 +1,5 @@
 import { IVideo } from "..";
 
-export interface IServerSideProps {
+export interface IVideoPageProps {
   video: IVideo;
 }

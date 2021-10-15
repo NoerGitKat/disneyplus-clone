@@ -53,7 +53,7 @@ const Home = ({ videos }: IVideos) => {
   ];
 
   return (
-    <div className={styles["home-container"]}>
+    <main className={styles["home-container"]}>
       <div className={styles["main-video"]}>
         <Image
           src={video.thumbnail.url}
@@ -83,7 +83,7 @@ const Home = ({ videos }: IVideos) => {
           );
         })}
       </div>
-    </div>
+    </main>
   );
 };
 
