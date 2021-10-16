@@ -20,4 +20,15 @@ const getVideos = gql`
   }
 `;
 
-export { getVideos };
+const getAccount = gql`
+  query ($id: ID!) {
+    account(where: { id: $id }) {
+      username
+      avatar {
+        url
+      }
+    }
+  }
+`;
+
+export { getVideos, getAccount };

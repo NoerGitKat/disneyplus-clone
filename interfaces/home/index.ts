@@ -17,3 +17,15 @@ export interface IVideo {
 export interface IVideos {
   videos: IVideo[];
 }
+
+export interface IAccount {
+  username: string;
+  avatar: {
+    url: string;
+  };
+}
+
+export interface IHomePageProps {
+  videos: IVideo[];
+  account: IAccount;
+}

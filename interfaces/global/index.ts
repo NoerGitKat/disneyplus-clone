@@ -10,3 +10,12 @@ export interface ICard {
     url: string;
   };
 }
+
+export interface INavProps {
+  account: {
+    username: string;
+    avatar: {
+      url: string;
+    };
+  };
+}

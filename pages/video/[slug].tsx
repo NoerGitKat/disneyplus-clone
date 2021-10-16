@@ -6,23 +6,28 @@ import { IVideoPageProps } from "../../interfaces";
 import { getVideo } from "./queries";
 import { useState } from "react";
 import styles from "./../../styles/Video.module.scss";
+import { getAccount } from "../home/queries";
+import Navbar from "../../components/Navbar";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { slug } = context.query;
 
-  const variables = { slug };
+  const slugVar = { slug };
+  const accountVar = { id: "ckub9z8x4sf2w0c04c4vemevs" };
 
-  const video = await gqlClient.request(getVideo, variables);
-  console.log("video");
+  const { video } = await gqlClient.request(getVideo, slugVar);
+
+  const { account } = await gqlClient.request(getAccount, accountVar);
 
   return {
     props: {
-      video: video.video,
+      video,
+      account,
     },
   };
 };
 
-const Video = ({ video }: IVideoPageProps) => {
+const Video = ({ video, account }: IVideoPageProps) => {
   const [isWatching, setIsWatching] = useState(false);
 
   const toggleIsWatching = () => {
@@ -31,6 +36,7 @@ const Video = ({ video }: IVideoPageProps) => {
 
   return (
     <main className={styles["video-container"]}>
+      <Navbar account={account} />
       <Image
         src={video.thumbnail.url}
         alt={video.title}

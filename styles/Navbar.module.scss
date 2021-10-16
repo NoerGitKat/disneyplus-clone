@@ -1,6 +1,23 @@
 .navbar {
   position: fixed;
+  width: 100%;
   z-index: 20;
   top: 0;
-  padding: 2rem;
+  padding: 1rem;
+
+  ul {
+    display: flex;
+    padding: 0 2rem;
+    align-items: center;
+    color: white;
+    list-style: none;
+
+    .avatar {
+      margin-left: auto;
+      margin-right: 0.5rem;
+      img {
+        border-radius: 100px;
+      }
+    }
+  }
 }
