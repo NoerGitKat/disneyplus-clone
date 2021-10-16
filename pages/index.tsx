@@ -73,21 +73,9 @@ const Home = ({ videos, account }: IHomePageProps) => {
       <section className={styles["video-feed"]}>
         {genres.map((genre: string) => {
           if (genre === "Recommended For You") {
-            return (
-              <Section
-                key={genre}
-                genre={genre}
-                videos={getUnseenVideos(videos)}
-              />
-            );
+            return <Section key={genre} genre={genre} videos={getUnseenVideos(videos)} />;
           }
-          return (
-            <Section
-              key={genre}
-              genre={genre}
-              videos={filterVideos(videos, genre)}
-            />
-          );
+          return <Section key={genre} genre={genre} videos={filterVideos(videos, genre)} />;
         })}
       </section>
     </main>
