@@ -1,7 +1,7 @@
 import { gql } from "graphql-request";
 
 const getVideo = gql`
-  query ($slug: String!) {
+  query getVideo($slug: String!) {
     video(where: { slug: $slug }) {
       createdAt
       id

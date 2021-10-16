@@ -1,7 +1,7 @@
 import { gql } from "graphql-request";
 
 const getVideos = gql`
-  query {
+  query getVideos {
     videos {
       createdAt
       id
@@ -21,7 +21,7 @@ const getVideos = gql`
 `;
 
 const getAccount = gql`
-  query ($id: ID!) {
+  query getAccount($id: ID!) {
     account(where: { id: $id }) {
       username
       avatar {

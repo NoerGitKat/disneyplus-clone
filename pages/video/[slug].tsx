@@ -27,11 +27,23 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 
+const changeVideoToSeen = async (slug: string) => {
+  const opts = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ slug }),
+  };
+  await fetch("/api/graphql", opts);
+};
+
 const Video = ({ video, account }: IVideoPageProps) => {
   const [isWatching, setIsWatching] = useState(false);
 
-  const toggleIsWatching = () => {
-    setIsWatching(!isWatching);
+  const playVideo = (isWatching: boolean, slug?: string) => {
+    setIsWatching(isWatching);
+    if (slug) changeVideoToSeen(slug);
   };
 
   return (
@@ -44,13 +56,13 @@ const Video = ({ video, account }: IVideoPageProps) => {
         width={90}
         layout="responsive"
       />
-      <section className={styles["text-overlay"]} onClick={toggleIsWatching}>
+      <section className={styles["text-overlay"]} onClick={() => playVideo(false)}>
         <button>
           <Link href="/">Go Back</Link>
         </button>
         <p>TAGS: {video.tags.join(", ")}</p>
         <p>DESCRIPTION: {video.description}</p>
-        <button onClick={toggleIsWatching}>Play</button>
+        <button onClick={() => playVideo(true, video.slug)}>Play</button>
       </section>
       {isWatching && (
         <section className={styles["video-overlay"]}>
